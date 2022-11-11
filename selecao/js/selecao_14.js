@@ -1,45 +1,43 @@
+function controllerGols() {
+    var golsGremio = parseInt(document.getElementById("gol-gremio").value);
+    var golsInter = parseInt(document.getElementById("gol-inter").value);
 
-function ControllerGols () { 
+    var error = validaEntrada(golsGremio, golsInter);
+    if (error != "") {
+        //alert(error);
+        saidaDados("Erros: " + error)
+        return;
+    }
 
-var golsGremio = parseInt(document.getElementById("gol-gremio").value);
-var golsInter =  parseInt(document.getElementById("gol-inter").value);
+    var resultdado = verfPlacar(golsGremio, golsInter);
 
-var error = validaEntrada(golsGremio, golsInter);
-if (error != "") {
-    //alert(error);
-    saidaDados("Erros: " + error)
-    return;
-}
-
-var resultdado = verfPlacar(golsGremio, golsInter);
-
-saidaDados("Resultado do jogo: " + resultdado);
+    saidaDados("Resultado do jogo: " + resultdado);
 
 }
 
 function validaEntrada(golsGremio, golsInter) {
-var error = "";
-if (!golsGremio || typeof golsGremio != 'number') {
-    error += "Verifique a quantidade de gols do Grêmio!\n";
-}
+    var error = "";
+    if (!golsGremio || typeof golsGremio != 'number') {
+        error += "Verifique a quantidade de gols do Grêmio!\n";
+    }
 
-if (!golsInter || typeof golsInter != 'number') {
-    error += "Verifique a quantidade de gols do Inter!\n";
-}
+    if (!golsInter || typeof golsInter != 'number') {
+        error += "Verifique a quantidade de gols do Inter!\n";
+    }
 
-return error;
+    return error;
 }
 
 function verfPlacar(golsGremio = 0, golsInter = 0) {
-if (golsGremio > golsInter) {
-    return "Gremio";
-} else if (golsInter > golsGremio) {
-    return "Inter";
-} else {
-    return "EMPATE";
-}
+    if (golsGremio > golsInter) {
+        return "Gremio";
+    } else if (golsInter > golsGremio) {
+        return "Inter";
+    } else {
+        return "EMPATE";
+    }
 }
 
 function saidaDados(texto) {
-document.getElementById("saidaTexto").innerHTML = texto;
+    document.getElementById("saidaTexto").innerHTML = texto;
 }
